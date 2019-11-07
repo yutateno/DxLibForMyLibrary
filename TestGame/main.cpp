@@ -6,8 +6,8 @@ using namespace InputControl;
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	// ウィンドウサイズを決める
-	int winWidth = 1920;
-	int winHeight = 1080;
+	int winWidth = 640;
+	int winHeight = 480;
 	int bitColor = 32;
 
 
@@ -25,7 +25,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SetGraphMode(winWidth, winHeight, bitColor);			// 画面サイズ設定
 	GetDefaultState(&winWidth, &winHeight, &bitColor);		// デフォルトウィンドウ値を得る
-	SetWindowSize(winWidth, winHeight);						// デフォルトウィンドウサイズに合わせてゲームサイズを変更
+	SetWindowSize(winWidth / 2, winHeight / 2);						// デフォルトウィンドウサイズに合わせてゲームサイズを変更
 
 
 	// ＤＸライブラリ初期化処理
@@ -67,7 +67,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		KeyData::UpDate();						// キーボードのループ処理
 		MouseData::UpDate();				// マウスのループ処理
 		MouseWheelData::UpDate();		// マウスホイールのループ処理
-
 
 		/// demo---------------------------------------------------------------------------------
 		/// -------------------------------------------------------------------------------------
@@ -142,7 +141,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				r++;
 			}
 		}
-		printfDx("%d\n", MouseData::GetMouseArea().x);
+		printfDx("%d\n", x2);
 		/// -------------------------------------------------------------------------------------
 		/// -------------------------------------------------------------------------------------
 	}

@@ -22,6 +22,10 @@ namespace InputControl
 		m_preMouseArea.x = m_mouseArea.x;
 		m_preMouseArea.y = m_mouseArea.y;
 		GetMousePoint(&m_mouseArea.x, &m_mouseArea.y);
+		/*MouseXY windowPosition;
+		GetWindowPosition(&windowPosition.x, &windowPosition.y);
+		m_mouseArea.x = m_mouseArea.x - (windowPosition.x + 8);
+		m_mouseArea.y -= (windowPosition.y + 8);*/
 
 
 		for (int i = 0; i != 3; ++i)
