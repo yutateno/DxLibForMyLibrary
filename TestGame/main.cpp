@@ -10,7 +10,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	int winHeight = 480;
 	int bitColor = 32;
 
-
 #ifdef _DEBUG
 	SetOutApplicationLogValidFlag(TRUE);	// ログテキスト出力する
 #elif NDEBUG
@@ -37,15 +36,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SetDrawScreen(DX_SCREEN_BACK);	// 背景描画
 
-	// キーボードの初期化
-	KeyData::UpDate();
 
-
-	// マウスの初期化
-	MouseData::UpDate();
-	// マウスホイールの初期化
-	MouseWheelData::UpDate();
-
+	InputControl::InitAllControl();
+	int mouseX, mouseY;
 
 	// demo 変数名適当
 	int x = 100;
@@ -62,41 +55,56 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
 	// メインループ
-	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() && !KeyData::IsCheckEnd())
+	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() && !KeyData::IsCheckEnd() && !PadData::IsCheckEnd())
 	{
-		KeyData::UpDate();						// キーボードのループ処理
-		MouseData::UpDate();				// マウスのループ処理
-		MouseWheelData::UpDate();		// マウスホイールのループ処理
+		GetMousePoint(&mouseX, &mouseY);
+		InputControl::AllUpdate(mouseX, mouseY, GetMouseWheelRotVol());
 
 		/// demo---------------------------------------------------------------------------------
 		/// -------------------------------------------------------------------------------------
-		if (KeyData::Get(KEY_INPUT_W) > 0)
+		if (KeyData::Get(KEY_INPUT_W) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_Y, 0, false) > 0)
 		{
 			y--;
 		}
-		if (KeyData::Get(KEY_INPUT_S) > 0)
+		if (KeyData::Get(KEY_INPUT_S) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_Y, 0, true) > 0)
 		{
 			y++;
 		}
-		if (KeyData::Get(KEY_INPUT_A) > 0)
+		if (KeyData::Get(KEY_INPUT_A) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_X, 0, true) > 0)
 		{
 			x--;
 		}
-		if (KeyData::Get(KEY_INPUT_D) > 0)
+		if (KeyData::Get(KEY_INPUT_D) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_X, 0, false) > 0)
 		{
 			x++;
+		}
+		if (PadData::GetTrigger(PadData::PadStick::LEFT_TRIGGER, 0) == 255)
+		{
+			if (green < 255) green++;
+		}
+		if (PadData::GetTrigger(PadData::PadStick::RIGHT_TRIGGER, 0) == 255)
+		{
+			if (green > 0) green--;
+		}
+		if (PadData::GetStick(PadData::PadStick::RIGHT_STICK_X, 0) > 0)
+		{
+			if (blue < 255) blue++;
+		}
+		if (PadData::GetStick(PadData::PadStick::RIGHT_STICK_X, 0) < 0)
+		{
+			if (blue > 0) blue--;
 		}
 		DrawBox(x - 20, y - 20, x + 20, y + 20, GetColor(red, green, blue), true);
 		DrawFormatString(0, 0, GetColor(255, 255, 255), "%dx%d, GetColor(255, %d, %d)", x, y, green, blue);
 		/// -------------------------------------------------------------------------------------
-
+		
 		/// -------------------------------------------------------------------------------------
-		if (MouseData::GetClick(MouseData::ECLICK::LEFT) > 0
+		if (MouseData::GetClick(MouseData::CLICK::LEFT) > 0
 			&& x3 - 20 < x2 && y3 - 20 < y2 && x3 + 20 > x2&& y3 + 20 > y2)
 		{
 			if (!click) click = true;
 		}
-		else if (MouseData::GetClick(MouseData::ECLICK::LEFT) == -1 && click)
+		else if (MouseData::GetClick(MouseData::CLICK::LEFT) == -1 && click)
 		{
 			click = false;
 		}
@@ -107,19 +115,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		DrawBox(x3 - 20, y3 - 20, x3 + 20, y3 + 20, GetColor(red, green, blue), true);
 		/// -------------------------------------------------------------------------------------
-
+		
 		/// -------------------------------------------------------------------------------------
 		x2 = MouseData::GetMouseArea().x;
 		y2 = MouseData::GetMouseArea().y;
-		if (MouseData::GetClick(MouseData::ECLICK::LEFT) > 0)
+		if (MouseData::GetClick(MouseData::CLICK::LEFT) > 0)
 		{
 			DrawCircle(x2, y2, r, GetColor(0, 255, 0));
 		}
-		else if (MouseData::GetClick(MouseData::ECLICK::RIGHT) > 0)
+		else if (MouseData::GetClick(MouseData::CLICK::RIGHT) > 0)
 		{
 			DrawCircle(x2, y2, r, GetColor(255, 0, 0));
 		}
-		else if (MouseData::GetClick(MouseData::ECLICK::CENTER) > 0)
+		else if (MouseData::GetClick(MouseData::CLICK::CENTER) > 0)
 		{
 			DrawCircle(x2, y2, r, GetColor(0, 0, 255));
 		}
@@ -141,7 +149,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				r++;
 			}
 		}
-		printfDx("%d\n", x2);
 		/// -------------------------------------------------------------------------------------
 		/// -------------------------------------------------------------------------------------
 	}
