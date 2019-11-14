@@ -38,7 +38,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);	// îwåiï`âÊ
 
 	PadData::SetPadNum();
-	int mouseX, mouseY;
 
 	// demo ïœêîñºìKìñ
 	int x = 100;
@@ -57,8 +56,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// ÉÅÉCÉìÉãÅ[Év
 	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() && !KeyData::IsCheckEnd() && !PadData::IsCheckEnd())
 	{
-		GetMousePoint(&mouseX, &mouseY);
-		InputControl::AllUpdate(mouseX, mouseY, GetMouseWheelRotVol());
+		InputControl::AllUpdate();
 
 		/// demo---------------------------------------------------------------------------------
 		/// -------------------------------------------------------------------------------------

@@ -32,7 +32,7 @@ namespace InputControl
 
 
 		//マウスのクリックの状態を更新する
-		static void UpDate(const int& GetMousePointX, const int& GetMousePointY);
+		static void UpDate();
 
 		//マウスのクリックの状態を返す
 		static const int& GetClick(const short& t_CLICK);
@@ -56,7 +56,7 @@ namespace InputControl
 
 	public:
 		//マウスのホイールの状態を更新
-		static void UpDate(const int t_GetMouseWheelRotVol);
+		static void UpDate();
 
 		//マウスホイールの状態を返す
 		static const int& GetMouseWheel();
@@ -151,5 +151,5 @@ namespace InputControl
 		static void SetPadNum();																		// 接続されてるゲームパッドを取得する
 	};
 	
-	void AllUpdate(const int& GetMousePointX, const int& GetMousePointY, const int t_GetMouseWheelRotVol);
+	void AllUpdate();
 }

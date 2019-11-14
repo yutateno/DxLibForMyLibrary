@@ -14,15 +14,14 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	void MouseData::UpDate(const int& GetMousePointX, const int& GetMousePointY)
+	void MouseData::UpDate()
 	{
 		// PCゲーである以上、マウスのない状態が想定できないのでエラー処理は省く
 		m_mouseInput = GetMouseInput();
 
 		m_preMouseArea.x = m_mouseArea.x;
 		m_preMouseArea.y = m_mouseArea.y;
-		m_mouseArea.x = GetMousePointX;
-		m_mouseArea.y = GetMousePointY;
+		GetMousePoint(&m_mouseArea.x, &m_mouseArea.y);
 
 
 		for (int i = 0; i != 3; ++i)
@@ -81,9 +80,9 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	void MouseWheelData::UpDate(const int t_GetMouseWheelRotVol)
+	void MouseWheelData::UpDate()
 	{
-		m_mouseWheel += t_GetMouseWheelRotVol;
+		m_mouseWheel += GetMouseWheelRotVol();
 
 
 		if (m_oldMouseWheel == m_mouseWheel)
@@ -531,11 +530,11 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	void AllUpdate(const int& t_GetMousePointX, const int& t_GetMousePointY, const int t_GetMouseWheelRotVol)
+	void AllUpdate()
 	{
 		KeyData::UpDate();						// キーボードのループ処理
 		PadData::UpDate();						// ゲームパッドのループ処理
-		MouseData::UpDate(t_GetMousePointX, t_GetMousePointY);				// マウスのループ処理
-		MouseWheelData::UpDate(t_GetMouseWheelRotVol);		// マウスホイールのループ処理
+		MouseData::UpDate();				// マウスのループ処理
+		MouseWheelData::UpDate();		// マウスホイールのループ処理
 	}
 }
