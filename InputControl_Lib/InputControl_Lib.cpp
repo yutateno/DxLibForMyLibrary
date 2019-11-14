@@ -1,11 +1,18 @@
 #include "pch.h"
-#include "InputControl.hpp"
+#include "InputControl_Lib.hpp"
 
 
 namespace InputControl
 {
 	/// ------------------------------------------------------------------------------------------------------------
-	using namespace MouseDataInternal;
+
+	int MouseData::m_mouse[3];
+	int MouseData::m_mouseInput;
+	MouseData::MouseXY MouseData::m_preMouseArea;
+	MouseData::MouseXY MouseData::m_mouseArea;
+
+
+
 	/// ------------------------------------------------------------------------------------------------------------
 	void MouseData::UpDate(const int& GetMousePointX, const int& GetMousePointY)
 	{
@@ -51,7 +58,7 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	const MouseXY& MouseData::GetMouseArea()
+	const MouseData::MouseXY& MouseData::GetMouseArea()
 	{
 		return m_mouseArea;
 	}
@@ -59,7 +66,7 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	const MouseXY MouseData::GetMouseMoveValue()
+	const MouseData::MouseXY MouseData::GetMouseMoveValue()
 	{
 		return { m_mouseArea.x - m_preMouseArea.x, m_mouseArea.y - m_preMouseArea.y };
 	}
@@ -67,7 +74,12 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	using namespace MouseWheelDataInternal;
+	
+	int MouseWheelData::m_mouseWheel;
+	int MouseWheelData::m_oldMouseWheel;
+
+
+
 	/// ------------------------------------------------------------------------------------------------------------
 	void MouseWheelData::UpDate(const int t_GetMouseWheelRotVol)
 	{
@@ -106,7 +118,12 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	using namespace KeyDataInternal;
+
+	int KeyData::m_key[256];		// ƒL[‚Ì“ü—Íó‘ÔŠi”[—p•Ï”
+	char KeyData::m_tmpKey[256];	// Œ»Ý‚ÌƒL[‚Ì“ü—Íó‘Ô‚ðŠi”[‚·‚é
+
+
+
 	/// ------------------------------------------------------------------------------------------------------------
 	void KeyData::UpDate()
 	{
@@ -154,13 +171,26 @@ namespace InputControl
 	}
 
 
-	
+
 
 	/// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-	using namespace PadDataInternal;
-	using namespace PadData::PadStick;
-	using namespace PadData::StickCheck;
-	/// ---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	int PadData::m_button[4][16];
+	int PadData::m_stick[4][6];
+	int PadData::m_stickCheck[4][8];
+	int PadData::m_trigger[4][2];
+
+	short PadData::stickLX_DeadZoneMAX = 1000;
+	short PadData::stickLX_DeadZoneMIN = -1000;
+	short PadData::stickLY_DeadZoneMAX = 1000;
+	short PadData::stickLY_DeadZoneMIN = -1000;
+	short PadData::stickRX_DeadZoneMAX = 1000;
+	short PadData::stickRX_DeadZoneMIN = -1000;
+	short PadData::stickRY_DeadZoneMAX = 1000;
+	short PadData::stickRY_DeadZoneMIN = -1000;
+
+	XINPUT_STATE PadData::m_input[4];
+	char PadData::m_padNum;
 
 
 
@@ -486,156 +516,16 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	void PadData::SetPadNum(const int t_GetJoypadNum)
+	void PadData::SetPadNum()
 	{
-		if (t_GetJoypadNum > 0)
+		if (GetJoypadNum() > 0)
 		{
-			m_padNum = static_cast<char>(t_GetJoypadNum);
+			m_padNum = static_cast<char>(GetJoypadNum());
 		}
 		else
 		{
 			m_padNum = -1;
 		}
-	}
-
-
-
-	/// ------------------------------------------------------------------------------------------------------------
-	void InitAllControl()
-	{
-		{
-			for (int i = 0; i != 3; ++i)
-			{
-				m_mouse[i] = 0;
-			}
-			m_mouseInput = 0;
-			m_preMouseArea.x = 0;
-			m_preMouseArea.y = 0;
-			m_mouseArea.x = 0;
-			m_mouseArea.y = 0;
-
-			m_mouseWheel = 0;
-			m_oldMouseWheel = 0;
-		}
-
-		{
-			for (int i = 0; i != 256; ++i)
-			{
-				m_key[i];
-				m_tmpKey[i];
-			}
-		}
-
-		{
-			for (int i = 0; i != 4; ++i)
-			{
-				for (int j = 0; j != 16; ++j)
-				{
-					m_button[i][j] = 0;
-				}
-
-				for (int j = 0; j != 6; ++j)
-				{
-					m_stick[i][j] = 0;
-				}
-
-				for (int j = 0; j != 8; ++j)
-				{
-					m_stickCheck[i][j] = 0;
-				}
-
-				for (int j = 0; j != 2; ++j)
-				{
-					m_trigger[i][j] = 0;
-				}
-			}
-
-			stickLX_DeadZoneMAX = 1000;
-			stickLX_DeadZoneMIN = -1000;
-			stickLY_DeadZoneMAX = 1000;
-			stickLY_DeadZoneMIN = -1000;
-			stickRX_DeadZoneMAX = 1000;
-			stickRX_DeadZoneMIN = -1000;
-			stickRY_DeadZoneMAX = 1000;
-			stickRY_DeadZoneMIN = -1000;
-
-			ZeroMemory(m_input, sizeof(XINPUT_STATE));
-
-			m_padNum = 1;
-		}
-	}
-
-
-
-	/// ------------------------------------------------------------------------------------------------------------
-	void InitMouse()
-	{
-		for (int i = 0; i != 3; ++i)
-		{
-			m_mouse[i] = 0;
-		}
-		m_mouseInput = 0;
-		m_preMouseArea.x = 0;
-		m_preMouseArea.y = 0;
-		m_mouseArea.x = 0;
-		m_mouseArea.y = 0;
-
-		m_mouseWheel = 0;
-		m_oldMouseWheel = 0;
-	}
-
-
-
-	/// ------------------------------------------------------------------------------------------------------------
-	void InitKey()
-	{
-		for (int i = 0; i != 256; ++i)
-		{
-			m_key[i];
-			m_tmpKey[i];
-		}
-	}
-
-
-
-	/// ------------------------------------------------------------------------------------------------------------
-	void InitPad()
-	{
-		for (int i = 0; i != 4; ++i)
-		{
-			for (int j = 0; j != 16; ++j)
-			{
-				m_button[i][j] = 0;
-			}
-
-			for (int j = 0; j != 6; ++j)
-			{
-				m_stick[i][j] = 0;
-			}
-
-			for (int j = 0; j != 8; ++j)
-			{
-				m_stickCheck[i][j] = 0;
-			}
-
-			for (int j = 0; j != 2; ++j)
-			{
-				m_trigger[i][j] = 0;
-			}
-		}
-
-		stickLX_DeadZoneMAX = 1000;
-		stickLX_DeadZoneMIN = -1000;
-		stickLY_DeadZoneMAX = 1000;
-		stickLY_DeadZoneMIN = -1000;
-		stickRX_DeadZoneMAX = 1000;
-		stickRX_DeadZoneMIN = -1000;
-		stickRY_DeadZoneMAX = 1000;
-		stickRY_DeadZoneMIN = -1000;
-
-		ZeroMemory(m_input, sizeof(XINPUT_STATE));
-
-		m_padNum = 1;
 	}
 
 

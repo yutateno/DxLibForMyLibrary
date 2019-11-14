@@ -1,4 +1,5 @@
-#include "InputControl.hpp"
+#include "InputControl_Lib.hpp"
+#include "DxLib.h"
 
 using namespace InputControl;
 
@@ -36,9 +37,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SetDrawScreen(DX_SCREEN_BACK);	// ”wŒi•`‰æ
 
-
-	InitAllControl();
-	PadData::SetPadNum(GetJoypadNum());
+	PadData::SetPadNum();
 	int mouseX, mouseY;
 
 	// demo •Ï”–¼“K“–
@@ -59,7 +58,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() && !KeyData::IsCheckEnd() && !PadData::IsCheckEnd())
 	{
 		GetMousePoint(&mouseX, &mouseY);
-		AllUpdate(mouseX, mouseY, GetMouseWheelRotVol());
+		InputControl::AllUpdate(mouseX, mouseY, GetMouseWheelRotVol());
 
 		/// demo---------------------------------------------------------------------------------
 		/// -------------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		DrawBox(x - 20, y - 20, x + 20, y + 20, GetColor(red, green, blue), true);
 		DrawFormatString(0, 0, GetColor(255, 255, 255), "%dx%d, GetColor(255, %d, %d)", x, y, green, blue);
 		/// -------------------------------------------------------------------------------------
-		
+
 		/// -------------------------------------------------------------------------------------
 		if (MouseData::GetClick(MouseData::CLICK::LEFT) > 0
 			&& x3 - 20 < x2 && y3 - 20 < y2 && x3 + 20 > x2&& y3 + 20 > y2)
@@ -116,7 +115,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		DrawBox(x3 - 20, y3 - 20, x3 + 20, y3 + 20, GetColor(red, green, blue), true);
 		/// -------------------------------------------------------------------------------------
-		
+
 		/// -------------------------------------------------------------------------------------
 		x2 = MouseData::GetMouseArea().x;
 		y2 = MouseData::GetMouseArea().y;

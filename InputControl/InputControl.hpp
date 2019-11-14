@@ -150,7 +150,7 @@ namespace InputControl
 
 		INPUTCONTROL_API void SetDedZone(const short& t_stickLX_MAX, const short& t_stickLX_MIN, const short& t_stickLY_MAX, const short& t_stickLY_MIN
 			, const short& t_stickRX_MAX, const short& t_stickRX_MIN, const short& t_stickRY_MAX, const short& t_stickRY_MIN);					// デッドゾーンの設定
-		INPUTCONTROL_API void SetPadNum();																		// 接続されてるゲームパッドを取得する
+		INPUTCONTROL_API void SetPadNum(const int t_GetJoypadNum);																		// 接続されてるゲームパッドを取得する
 	}
 
 	INPUTCONTROL_API void InitAllControl();
