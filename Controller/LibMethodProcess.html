@@ -1,0 +1,286 @@
+<h2>
+	構成
+	<hr color="#99baff">
+</h2>
+<p>
+	<ol>
+		<a href="#R1">Mouse<br></a>
+		<a href="#R2">MouseWheel<br></a>
+		<a href="#R3">Key<br></a>
+		<a href="#R4">Pad<br></a>
+	</ol><br>
+	<br><br><br><br><br>
+</p>
+
+<h3>
+	<a name="R1">
+            Mouse
+	</a>
+	<hr color="#99baff">
+</h3>
+<p>
+    宣言：　　<font color="#2e8b57">void InputControl::MouseData::Update();</font><br>
+    <br>
+    概要：　　マウスの状態を更新する<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　マウスの状態を更新し続けます。<br>
+    　　　　　　マウスを使う際はループ内に呼ぶことでマウス処理を使うようにできます。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const int& InputControl::MouseData::GetClick(const CLICK& t_CLICK);</font><br>
+    <br>
+    概要：　　マウスのクリック状態を得る<br>
+    <br>
+    引数：　　t_CLICK：マウスのボタンを渡す<br>
+    　　　　　　　　　　MouseData::CLICK::LEFT：マウス左ボタン<br>
+    　　　　　　　　　　MouseData::CLICK::RIGHT：マウス右ボタン<br>
+    　　　　　　　　　　MouseData::CLICK::CENTER：マウスホイールボタン<br>
+    戻り値：　0：押していない<br>
+    　　　　　1：押した瞬間<br>
+    　　　　　2以上：押し続けている<br>
+    　　　　　-1：離した瞬間<br>
+    <br>
+    解説：　　　引数に渡したボタンの押している状態を渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const MouseXY& InputControl::MouseData::GetMouseArea();</font><br>
+    <br>
+    概要：　　マウスの位置を得る<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　MouseXY.x：X座標値<br>
+    　　　　　MouseXY.y：y座標値<br>
+    <br>
+    解説：　　　マウスのウィンドウ内での座標を渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const MouseXY InputControl::MouseData::GetMouseMoveValue();</font><br>
+    <br>
+    概要：　　直前のマウスからどれくらい移動したかを得る<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　MouseXY.x：X座標の移動値<br>
+    　　　　　MouseXY.y：y座標の移動値<br>
+    <br>
+    解説：　　　直前のマウスの座標からどれくらい移動したかを渡す関数です。<br>
+	<br><br><br><br><br>
+</p>
+
+<h3>
+	<a name="R2">
+            MouseWheel
+	</a>
+	<hr color="#99baff">
+</h3>
+<p>
+    宣言：　　<font color="#2e8b57">void InputControl::MouseWheelData::UpDate();</font><br>
+    <br>
+    概要：　　マウスホイールの状態を更新する<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　マウスホイールの状態を更新し続けます。<br>
+    　　　　　　マウスホイールを使う際はループ内に呼ぶことでマウスホイール処理を使うようにできます。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const int& InputControl::MouseWheelData::GetMouseWheel();</font><br>
+    <br>
+    概要：　　マウスホイールの状態を得る<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　0より小さい：マウスを下にスクロールしたときの値<br>
+    　　　　　0より大きい：マウスを上にスクロールしたときの値<br>
+    　　　　　0：マウスホイールを動かしていない<br>
+    <br>
+    解説：　　　マウスホイールの状態から値を渡す関数です。<br>
+	<br><br><br><br><br>
+</p>
+
+<h3>
+	<a name="R3">
+            Key
+	</a>
+	<hr color="#99baff">
+</h3>
+<p>
+    宣言：　　<font color="#2e8b57">void InputControl::KeyData::UpDate();</font><br>
+    <br>
+    概要：　　キーボードの状態を更新する<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　キーボードの状態を更新し続けます。<br>
+    　　　　　　キーボードを使う際はループ内に呼ぶことでキーボード処理を使うようにできます。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const int& InputControl::KeyData::Get(const int& t_keyCode);</font><br>
+    <br>
+    概要：　　キーボードの状態を得る<br>
+    <br>
+    引数：　　t_keyCode：キーのボタンを渡す<br>
+    　　　　　　　　　　　KEY_INPUT_?
+    戻り値：　0：押していない<br>
+    　　　　　1：押した瞬間<br>
+    　　　　　2以上：押し続けている<br>
+    　　　　　-1：離した瞬間<br>
+    <br>
+    解説：　　　キーボードの押している状態を渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const bool InputControl::KeyData::IsCheckEnd();</font><br>
+    <br>
+    概要：　　ゲームの終了コマンド（ESC）を押しているかどうかを得る<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　false：終了コマンドを押していない<br>
+    　　　　　true：終了コマンドを押した<br>
+    <br>
+    解説：　　　ゲーム終了のコマンドを押しているかどうかを渡す関数です。<br>
+	<br><br><br><br><br>
+</p>
+
+<h3>
+	<a name="R4">
+            Pad
+	</a>
+	<hr color="#99baff">
+</h3>
+<p>
+    宣言：　　<font color="#2e8b57">void InputControl::PadData::UpDate();</font><br>
+    <br>
+    概要：　　xboxコントローラーの状態を更新する<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　xboxコントローラーの状態を更新し続けます。<br>
+    　　　　　　xboxコントローラーを使う際はループ内に呼ぶことでxboxコントローラー処理を使うようにできます。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const int& InputControl::PadData::GetButton(const int& t_code, const int& t_padNum);</font><br>
+    <br>
+    概要：　　xboxコントローラーのボタンの状態を得る<br>
+    <br>
+    引数：　　t_code：コントローラーのボタンを渡す<br>
+    　　　　　　　　　XINPUT_BUTTON_?<br>
+    　　　　　t_padNum：コントローラーの番号を渡す<br>
+    　　　　　　　　　　0なら1P<br>
+                      1なら2P<br>
+                      2なら3P<br>
+                      3なら4P<br>
+    戻り値：　0：押していない<br>
+    　　　　　1：押した瞬間<br>
+    　　　　　2以上：押し続けている<br>
+    　　　　　-1：離した瞬間<br>
+    <br>
+    解説：　　　キーボードの押している状態を渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const int& InputControl::PadData::GetTrigger(const int& t_code, const int& t_padNum);</font><br>
+    <br>
+    概要：　　xboxコントローラーのトリガーの状態を得る<br>
+    <br>
+    引数：　　t_code：コントローラーのトリガーを渡す<br>
+    　　　　　　　　　PadData::PadStick::LEFT_TRIGGER：左トリガー（LTボタン）<br>
+    　　　　　　　　　PadData::PadStick::RIGHT_TRIGGER：右トリガー（RTボタン）<br>
+    　　　　　t_padNum：コントローラーの番号を渡す<br>
+    　　　　　　　　　　0なら1P<br>
+                      1なら2P<br>
+                      2なら3P<br>
+                      3なら4P<br>
+    戻り値：　0：押していない<br>
+    　　　　　255：最大まで押し切っている<br>
+    　　　　　0～255：押し切らない程度に押している<br>
+    <br>
+    解説：　　　xboxコントローラーのトリガーの状態を渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const int& InputControl::PadData::GetStick(const int& t_code, const int& t_padNum);</font><br>
+    <br>
+    概要：　　xboxコントローラーのスティックの状態を得る<br>
+    <br>
+    引数：　　t_code：コントローラーの左右のどちらかを渡しつつどの方向かを渡す<br>
+    　　　　　　　　　PadData::PadStick::LEFT_STICK_X：左スティックの横方向<br>
+    　　　　　　　　　PadData::PadStick::LEFT_STICK_Y：左スティックの縦方向<br>
+    　　　　　　　　　PadData::PadStick::RIGHT_STICK_X：右スティックの横方向<br>
+    　　　　　　　　　PadData::PadStick::RIGHT_STICK_Y：右スティックの縦方向<br>
+    　　　　　t_padNum：コントローラーの番号を渡す<br>
+    　　　　　　　　　　0なら1P<br>
+                      1なら2P<br>
+                      2なら3P<br>
+                      3なら4P<br>
+    戻り値：　0：スティックを動かしていない<br>
+    　　　　　0より大きい：横方向であれば右、縦方向であれば上<br>
+    　　　　　0より小さい：横方向であれば左、縦方向であれば下<br>
+    <br>
+    解説：　　　xboxコントローラーのスティックの状態を渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const int& InputControl::PadData::GetStickCheck(const int& t_code, const int& t_padNum, const bool& t_leftAndDownIsTrue);</font><br>
+    <br>
+    概要：　　xboxコントローラーのスティックを最大まで押し倒しているかを得る<br>
+    <br>
+    引数：　　t_code：コントローラーの左右のどちらかを渡しつつどの方向かを渡す<br>
+    　　　　　　　　　PadData::PadStick::LEFT_STICK_X：左スティックの横方向<br>
+    　　　　　　　　　PadData::PadStick::LEFT_STICK_Y：左スティックの縦方向<br>
+    　　　　　　　　　PadData::PadStick::RIGHT_STICK_X：右スティックの横方向<br>
+    　　　　　　　　　PadData::PadStick::RIGHT_STICK_Y：右スティックの縦方向<br>
+    　　　　　t_padNum：コントローラーの番号を渡す<br>
+    　　　　　　　　　　0なら1P<br>
+                      1なら2P<br>
+                      2なら3P<br>
+                      3なら4P<br>
+　　　　　　　t_leftAndDownIsTrue：スティックをどちらに押し倒しているかを渡す<br>
+　　　　　　　　　　　　　　　　　　左または下であればtrueを渡す、そうでなければfalseを渡す<br>
+    戻り値：　0：スティックを押し倒していない<br>
+    　　　　　1：スティックを押し倒した瞬間<br>
+    　　　　　2以上：スティックを押し続けている<br>
+    　　　　　-1：スティックを押し倒しから戻した瞬間<br>
+    <br>
+    解説：　　　xboxコントローラーのスティックを押し倒しているかどうかを渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const bool InputControl::PadData::IsCheckEnd();</font><br>
+    <br>
+    概要：　　ゲームの終了コマンド（START + BACK）を押しているかどうかを得る<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　false：終了コマンドを押していない<br>
+    　　　　　true：終了コマンドを押した<br>
+    <br>
+    解説：　　　ゲーム終了のコマンドを押しているかどうかを渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const char& InputControl::PadData::GetPadNum();</font><br>
+    <br>
+    概要：　　接続されているxboxコントローラの数を得る<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　1：xboxコントローラーが一つ接続されている<br>
+    　　　　　2：xboxコントローラーが二つ接続されている<br>
+    　　　　　3：xboxコントローラーが三つ接続されている<br>
+    　　　　　4：xboxコントローラーが四つ接続されている<br>
+    <br>
+    解説：　　　xboxコントローラーがいくつ繋がっているかを渡す関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">void InputControl::PadData::SetDedZone(const short& t_stickLX_MAX, const short& t_stickLX_MIN, const short& t_stickLY_MAX, const short& t_stickLY_MIN<br>
+			, const short& t_stickRX_MAX, const short& t_stickRX_MIN, const short& t_stickRY_MAX, const short& t_stickRY_MIN);</font><br>
+    <br>
+    概要：　　xboxコントローラーのデッドゾーンを設定する<br>
+    <br>
+    引数：　　t_stickLX_MAX：左スティックの右に倒したときの反応し始める値を決める、0より大きくなければならなくかつ最大であるInputControl::PadData::STICK_MAX_VALUE以下でなければならない<br>
+    　　　　　t_stickLX_MIN：左スティックの左に倒したときの反応し始める値を決める、0より小さくなければならなくかつ最大であるInputControl::PadData::STICK_MIN_VALUE以上でなければならない<br>
+    　　　　　t_stickLY_MAX：左スティックの下に倒したときの反応し始める値を決める、0より大きくなければならなくかつ最大であるInputControl::PadData::STICK_MAX_VALUE以下でなければならない<br>
+    　　　　　t_stickLY_MIN：左スティックの上に倒したときの反応し始める値を決める、0より小さくなければならなくかつ最大であるInputControl::PadData::STICK_MIN_VALUE以上でなければならない<br>
+    　　　　　t_stickRX_MAX：右スティックの右に倒したときの反応し始める値を決める、0より大きくなければならなくかつ最大であるInputControl::PadData::STICK_MAX_VALUE以下でなければならない<br>
+    　　　　　t_stickRX_MIN：右スティックの左に倒したときの反応し始める値を決める、0より小さくなければならなくかつ最大であるInputControl::PadData::STICK_MIN_VALUE以上でなければならない<br>
+    　　　　　t_stickRY_MAX：右スティックの下に倒したときの反応し始める値を決める、0より大きくなければならなくかつ最大であるInputControl::PadData::STICK_MAX_VALUE以下でなければならない<br>
+    　　　　　t_stickRY_MIN：右スティックの上に倒したときの反応し始める値を決める、0より小さくなければならなくかつ最大であるInputControl::PadData::STICK_MIN_VALUE以上でなければならない<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　xboxコントローラーのデッドゾーンを設定する関数です。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">void InputControl::PadData::SetPadNum();</font><br>
+    <br>
+    概要：　　xboxコントローラーがいくつ繋がっているか<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　xboxコントローラーがいくつ繋がっているかを調べる。<br>
+    　　　　　　コントローラーがいくつ繋がっているかを調べる関数のため、初期化のところで行う必要がある。<br>
+	<br><br><br><br><br>
+</p>

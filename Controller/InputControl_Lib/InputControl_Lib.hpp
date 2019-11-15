@@ -23,7 +23,7 @@ namespace InputControl
 
 	public:
 		//左クリックか右クリックか
-		enum CLICK
+		enum class CLICK
 		{
 			LEFT,
 			RIGHT,
@@ -35,7 +35,7 @@ namespace InputControl
 		static void UpDate();
 
 		//マウスのクリックの状態を返す
-		static const int& GetClick(const short& t_CLICK);
+		static const int& GetClick(const CLICK& t_CLICK);
 
 		// 現在のマウスの位置
 		static const MouseXY& GetMouseArea();

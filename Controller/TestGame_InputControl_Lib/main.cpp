@@ -84,16 +84,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			if (green > 0) green--;
 		}
-		if (PadData::GetStick(PadData::PadStick::RIGHT_STICK_X, 0) > 0)
+		if (PadData::GetStick(PadData::PadStick::RIGHT_STICK_Y, 0) > 0)
 		{
 			if (blue < 255) blue++;
 		}
-		if (PadData::GetStick(PadData::PadStick::RIGHT_STICK_X, 0) < 0)
+		if (PadData::GetStick(PadData::PadStick::RIGHT_STICK_Y, 0) < 0)
 		{
 			if (blue > 0) blue--;
 		}
 		DrawBox(x - 20, y - 20, x + 20, y + 20, GetColor(red, green, blue), true);
 		DrawFormatString(0, 0, GetColor(255, 255, 255), "%dx%d, GetColor(255, %d, %d)", x, y, green, blue);
+		printfDx("%d\n", PadData::GetPadNum());
 		/// -------------------------------------------------------------------------------------
 
 		/// -------------------------------------------------------------------------------------

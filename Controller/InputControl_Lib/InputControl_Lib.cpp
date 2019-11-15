@@ -49,9 +49,9 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	const int& MouseData::GetClick(const short& t_CLICK)
+	const int& MouseData::GetClick(const CLICK& t_CLICK)
 	{
-		return m_mouse[t_CLICK];
+		return m_mouse[static_cast<int>(t_CLICK)];
 	}
 
 
