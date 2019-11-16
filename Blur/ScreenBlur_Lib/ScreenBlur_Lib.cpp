@@ -16,17 +16,17 @@ namespace ScreenBlur_Lib
 		m_offsetX1 = 0;
 		m_offsetX2 = 0;
 		m_offsetY1 = 0;
-		offsetY2 = 0;
+		m_offsetY2 = 0;
 		m_notBlendDraw = 0;
 	}
 
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	void ScreenBlur::Init(int t_alpha, int t_offsetX1, int t_offsetY1, int t_offsetX2, int t_offsetY2)
+	void ScreenBlur::Init(const int t_winWidth, const int t_winHeight, const int t_alpha, const int t_offsetX1, const int t_offsetY1, const int t_offsetX2, const int t_offsetY2)
 	{
-		m_screenWidth = 1920;
-		m_screenHeight = 1080;
+		m_screenWidth = t_winWidth;
+		m_screenHeight = t_winHeight;
 		for (int i = 0; i < 2; ++i)
 		{
 			m_screen[i] = -1;
@@ -37,7 +37,7 @@ namespace ScreenBlur_Lib
 		m_offsetX1 = t_offsetX1;
 		m_offsetX2 = t_offsetX2;
 		m_offsetY1 = t_offsetY1;
-		offsetY2 = t_offsetY2;
+		m_offsetY2 = t_offsetY2;
 
 		m_notBlendDraw = 0;
 	}
@@ -91,7 +91,7 @@ namespace ScreenBlur_Lib
 
 		if (m_notBlendDraw++ > 2)
 		{
-			DrawExtendGraph(m_offsetX1, m_offsetY1, m_screenWidth + m_offsetX2, m_screenHeight + offsetY2, m_screen[1 - m_current], false);
+			DrawExtendGraph(m_offsetX1, m_offsetY1, m_screenWidth + m_offsetX2, m_screenHeight + m_offsetY2, m_screen[1 - m_current], false);
 		}
 		SetDrawBlendMode(blendMode, param);
 		SetDrawMode(drawMode);

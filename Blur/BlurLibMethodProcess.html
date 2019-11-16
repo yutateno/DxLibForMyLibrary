@@ -1,0 +1,61 @@
+<p>
+    使う準備<br>
+    　ScreenBlur_Lib::ScreenBlurを生成しなければならない。<br>
+</p>
+<p>
+    宣言：　　<font color="#2e8b57">void ScreenBlur_Lib::Init(const int t_winWidth, const int t_winHeight, const int t_alpha, const int t_offsetX1, const int t_offsetY1, const int t_offsetX2, const int t_offsetY2);</font><br>
+    <br>
+    概要：　　ブラーの方向を初期設定する<br>
+    <br>
+    引数：　　t_winWidth：ウィンドウサイズの横幅<br>
+    　　　　　t_winHeight：ウィンドウサイズの縦幅<br>
+    　　　　　t_alpha：0～255を指定する、その指定値まで透過しながら移動する（最大で127が丁度いい）<br>
+    　　　　　t_offsetX1：右へのフレームの移動値<br>
+    　　　　　t_offsetY1：下へのフレームの移動値<br>
+    　　　　　t_offsetX2：右へだんだん伸びをするようになる<br>
+    　　　　　t_offsetY2：下へだんだん伸びをするようになる<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　ブラーの方向を設定します。<br>
+    　　　　　　例えば、ScreenBlur_Lib::ScreenBlur m_screenBlurしたあとにすぐこの関数を一度だけ呼ばなければならない。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">void ScreenBlur_Lib::ReplayInit();</font><br>
+    <br>
+    概要：　　ブラー処理の描画に関するものを再度初期化する<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　ブラー処理を行う直前に描画の内容を再度初期化しないといけないため、これを呼ぶ必要がある。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">void ScreenBlur_Lib::Release();</font><br>
+    <br>
+    概要：　　ブラー処理にて使っていたものを解放する<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　ブラー処理にて裏画面用の画像として生成したものを削除する。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">void ScreenBlur_Lib::PreRenderBlurScreen();</font><br>
+    <br>
+    概要：　　ブラーのための準備をする<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　ブラーのための準備を行う。<br>
+    　　　　　　ブラーをする直前にこの関数を呼ぶようにする。<br>
+    　　　　　※注意点として、この関数の前に画像を描画しても描画されない。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">void ScreenBlur_Lib::PostRenderBlurScreen();</font><br>
+    <br>
+    概要：　　ブラーの処理を行う<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　ブラーの処理を行う。<br>
+    　　　　　　PreRenderBlurScreen()との間にある画像のすべてをブラー処理させる。<br>
+	<br><br><br><br><br>
+</p>

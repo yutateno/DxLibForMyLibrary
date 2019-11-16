@@ -12,7 +12,7 @@ namespace ScreenBlur_Lib
 		int m_current;
 		int m_alpha;
 		int m_screenWidth, m_screenHeight;
-		int m_offsetX1, m_offsetX2, m_offsetY1, offsetY2;
+		int m_offsetX1, m_offsetX2, m_offsetY1, m_offsetY2;
 		int m_notBlendDraw;
 
 
@@ -21,7 +21,7 @@ namespace ScreenBlur_Lib
 		~ScreenBlur() {}
 
 
-		void Init(int alpha, int offsetX1, int offsetY1, int offsetX2, int offsetY2);
+		void Init(const int t_winWidth, const int t_winHeight, const int t_alpha, const int t_offsetX1, const int t_offsetY1, const int t_offsetX2, const int t_offsetY2);
 		void ReplayInit();
 		void Release();
 

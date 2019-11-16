@@ -53,15 +53,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		m_screenBlur[i] = ScreenBlur_Lib::ScreenBlur();
 	}
-	m_screenBlur[0].Init(200, 6, -2, 0, 0);
-	m_screenBlur[1].Init(200, 0, 10, 0, 0);
+	m_screenBlur[0].Init(640, 480, 200, 6, -2, 0, 0);
+	m_screenBlur[1].Init(640, 480, 200, 0, 10, 0, 0);
 
 	// ÉÅÉCÉìÉãÅ[Év
 	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen())
 	{
-		DrawBox(0, 0, 640, 480, GetColor(125, 125, 125), true);
-
 		m_screenBlur[1].PreRenderBlurScreen();
+		DrawBox(0, 0, 640, 480, GetColor(125, 125, 125), true);
 		DrawBox(50, 50, 80, 80, GetColor(255, 0, 0), true);
 		m_screenBlur[1].PostRenderBlurScreen();
 	}
