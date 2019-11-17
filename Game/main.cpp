@@ -1,8 +1,10 @@
 #include "InputControl_Lib.hpp"
+#include "ScreenBlur_Lib.hpp"
 #include "DxLib.h"
 #include <string>
 
 using namespace InputControl;
+using namespace ScreenBlur_Lib;
 
 
 bool Init(const int t_winWidth, const int t_winHeight, const int t_bitColor, std::string t_projectName)
@@ -48,6 +50,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 	if (Init(640, 480, 32, "Game") == false) return -1;
 
+
+	/// コントローラーライブラリ
 	PadData::SetPadNum();
 
 	// demo 変数名適当
@@ -64,12 +68,60 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	bool click = false;
 
 
+	/// ブラーライブラリ
+	ScreenBlur m_screenBlur = ScreenBlur();
+	bool m_blur = false;
+	bool m_firstBlur = false;
+
+
 	// メインループ
 	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() && !KeyData::IsCheckEnd() && !PadData::IsCheckEnd())
 	{
 		InputControl::AllUpdate();
 
-		/// demo---------------------------------------------------------------------------------
+		/// ブラー-------------------------------------------------------------------------------
+		if (KeyData::Get(KEY_INPUT_W) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_Y, 0, false) > 0)
+		{
+			y--;
+		}
+		if (KeyData::Get(KEY_INPUT_S) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_Y, 0, true) > 0)
+		{
+			y++;
+		}
+		if (KeyData::Get(KEY_INPUT_A) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_X, 0, true) > 0)
+		{
+			x--;
+			m_blur = true;
+		}
+		if (KeyData::Get(KEY_INPUT_A) == -1)
+		{
+			m_blur = false;
+		}
+		if (KeyData::Get(KEY_INPUT_D) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_X, 0, false) > 0)
+		{
+			x++;
+		}
+		if (m_blur)
+		{
+			if (!m_firstBlur)
+			{
+				m_firstBlur = true;
+				m_screenBlur.Init(640, 480, 200, 10, 0, 0, 0);
+			}
+			m_screenBlur.PreRenderBlurScreen();
+			DrawBox(x - 20, y - 20, x + 20, y + 20, GetColor(255, 0, 0), true);
+			m_screenBlur.PostRenderBlurScreen();
+		}
+		else
+		{
+			m_firstBlur = false;
+			m_screenBlur.Release();
+			DrawBox(x - 20, y - 20, x + 20, y + 20, GetColor(255, 0, 0), true);
+		}
+
+
+		/*
+		/// コントローラー-----------------------------------------------------------------------
 		/// -------------------------------------------------------------------------------------
 		if (KeyData::Get(KEY_INPUT_W) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_Y, 0, false) > 0)
 		{
@@ -161,6 +213,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		/// -------------------------------------------------------------------------------------
 		/// -------------------------------------------------------------------------------------
+		*/
 	}
 
 	// 削除
