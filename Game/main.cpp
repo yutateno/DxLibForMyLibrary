@@ -1,10 +1,12 @@
 #include "InputControl_Lib.hpp"
 #include "ScreenBlur_Lib.hpp"
+#include "FileReadWrite_Lib.hpp"
 #include "DxLib.h"
 #include <string>
 
 using namespace InputControl;
 using namespace ScreenBlur_Lib;
+using namespace FileReadWrite_Lib;
 
 
 bool Init(const int t_winWidth, const int t_winHeight, const int t_bitColor, std::string t_projectName)
