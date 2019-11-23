@@ -1,0 +1,41 @@
+<p>
+    宣言：　　<font color="#2e8b57">void FileReadWrite_Lib::FileReaderWrite::Init();</font><br>
+    <br>
+    概要：　　初期化する<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　使う前にデータを削除する。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">bool FileReadWrite_Lib::FileReaderWrite::FileCSVRead(const std::string t_file);</font><br>
+    <br>
+    概要：　　CSVのファイルを読み込む<br>
+    <br>
+    引数：　　t_file：読み込むファイル<br>
+    戻り値：　false：読み込み失敗時<br>
+    　　　　　true：読み込み成功時<br>
+    <br>
+    解説：　　　ファイルを読み込む処理をさせる。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">std::vector<std::vector<std::string>> FileReadWrite_Lib::FileReaderWrite::GetMapData();</font><br>
+    <br>
+    概要：　　読み込んだデータを出力する<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　ファイル内データ：（読み込めた場合の）ファイルの中身<br>
+    <br>
+    解説：　　　FileCSVReadにて読み込んだファイルの中身を出力する。しかし読み込めていなかったら空が出力される。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">bool FileReadWrite_Lib::FileReaderWrite::FileCSVWrite(const std::string t_file, const std::vector<std::vector<std::string>> t_data);</font><br>
+    <br>
+    概要：　　CSVのファイルを書き込む<br>
+    <br>
+    引数：　　t_file：書き込むファイル<br>
+    　　　　　t_data：ファイルに書き込むデータ<br>
+    戻り値：　false：書き込みファイル作成失敗時<br>
+    　　　　　true：書き込みファイル作成成功時<br>
+    <br>
+    解説：　　　データをファイルに書き込む処理をする。<br>
+	<br><br><br><br><br>
+</p>
