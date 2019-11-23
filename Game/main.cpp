@@ -81,20 +81,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	/// ファイルライブラリ
 	FileReaderWrite::Init();
 	if (!FileReaderWrite::FileCSVRead("test.csv")) return -1;
-	//std::vector<std::vector<std::string>> map = FileReaderWrite::GetMapData();
+	std::vector<std::vector<std::string>> map = FileReaderWrite::GetMapData();
 
 
 	// メインループ
 	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() && !KeyData::IsCheckEnd() && !PadData::IsCheckEnd())
 	{
 		/// ファイル-----------------------------------------------------------------------------
-		/*for (int i = 0; i != map.size(); ++i)
+		for (int i = 0; i != map.size(); ++i)
 		{
 			for (int j = 0; j != map[i].size(); ++j)
 			{
-				DrawFormatString(i * 5, j * 5, GetColor(255, 255, 255), "%s", map[i][j]);
+				DrawFormatString(i * 50, j * 50, GetColor(255, 255, 255), "%s", map[i][j].c_str());
 			}
-		}*/
+		}
 		
 
 		/*

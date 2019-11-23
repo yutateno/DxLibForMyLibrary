@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef FILEREADWRITE_LIB
+#define FILEREADWRITE_LIB
+
 #include <string>
 #include <vector>
 #include <fstream>
@@ -16,9 +19,6 @@ namespace FileReadWrite_Lib
 
 
 	public:
-		FileReaderWrite();
-		~FileReaderWrite();
-
 		static void Init();
 
 
@@ -29,3 +29,4 @@ namespace FileReadWrite_Lib
 	};
 }
 
+#endif

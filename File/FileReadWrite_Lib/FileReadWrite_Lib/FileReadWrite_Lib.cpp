@@ -13,22 +13,6 @@ namespace FileReadWrite_Lib
 
 
 	/// ----------------------------------------------------------------------------------------------
-	FileReaderWrite::FileReaderWrite()
-	{
-		std::vector<std::vector<std::string>>().swap(m_mapdata);
-	}
-
-
-
-	/// ----------------------------------------------------------------------------------------------
-	FileReaderWrite::~FileReaderWrite()
-	{
-		std::vector<std::vector<std::string>>().swap(m_mapdata);
-	}
-
-
-
-	/// ----------------------------------------------------------------------------------------------
 	void FileReaderWrite::Init()
 	{
 		std::vector<std::vector<std::string>>().swap(m_mapdata);

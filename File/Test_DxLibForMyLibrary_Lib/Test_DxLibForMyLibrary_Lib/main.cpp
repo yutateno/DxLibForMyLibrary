@@ -1,4 +1,8 @@
 #include "FileReadWrite_Lib.hpp"
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
 #include <iostream>
 
 using namespace FileReadWrite_Lib;
