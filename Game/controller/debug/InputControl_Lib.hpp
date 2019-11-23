@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef INPUTCONTROL_LIB
+#define INPUTCONTROL_LIB
+
 #include "DxLib.h"
 
 
@@ -153,3 +156,5 @@ namespace InputControl
 	
 	void AllUpdate();
 }
+
+#endif
