@@ -3,6 +3,7 @@
 #include "InputControl_Lib.hpp"
 #include "ScreenBlur_Lib.hpp"
 #include "FileReadWrite_Lib.hpp"
+#include "Coll2D_Lib.hpp"
 #include "DxLib.h"
 #include <string>
 
@@ -84,9 +85,61 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	std::vector<std::vector<std::string>> map = FileReaderWrite::GetMapData();
 
 
+	/// 2Dコリジョンライブラリ
+	Coll2D_Lib::SBox box;
+	Coll2D_Lib::SCircle circle;
+
+	circle.x = 100.0f;
+	circle.y = 100.0f;
+	circle.r = 80.0f;
+
+	box.left = 200.0f;
+	box.top = 150.0f;
+	box.right = 500.0f;
+	box.bottom = 350.0f;
+
+
 	// メインループ
 	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() && !KeyData::IsCheckEnd() && !PadData::IsCheckEnd())
 	{
+		/// コントローラー-----------------------------------------------------------------------
+		InputControl::AllUpdate();
+
+
+		/// 2Dコリジョン---------------------------------------------------------------------
+		if (Coll2D_Lib::CheckColl(box, circle))
+		{
+			DrawBox(box.left, box.top, box.right, box.bottom, GetColor(255, 255, 255), true);
+			DrawCircle(circle.x, circle.y, circle.r, GetColor(125, 125, 125));
+		}
+		else
+		{
+			DrawBox(box.left, box.top, box.right, box.bottom, GetColor(125, 125, 125), true);
+			DrawCircle(circle.x, circle.y, circle.r, GetColor(125, 125, 125));
+		}
+
+		if (CheckHitKey(KEY_INPUT_LEFT))
+		{
+			box.left -= 5.0f;
+			box.right -= 5.0f;
+		}
+		if (CheckHitKey(KEY_INPUT_RIGHT))
+		{
+			box.left += 5.0f;
+			box.right += 5.0f;
+		}
+		if (CheckHitKey(KEY_INPUT_UP))
+		{
+			box.top -= 5.0f;
+			box.bottom -= 5.0f;
+		}
+		if (CheckHitKey(KEY_INPUT_DOWN))
+		{
+			box.top += 5.0f;
+			box.bottom += 5.0f;
+		}
+
+		/*
 		/// ファイル-----------------------------------------------------------------------------
 		for (int i = 0; i != map.size(); ++i)
 		{
@@ -97,7 +150,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		
 
-		/*
 		/// ブラー-------------------------------------------------------------------------------
 		if (KeyData::Get(KEY_INPUT_W) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_Y, 0, false) > 0)
 		{
@@ -141,8 +193,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		/*
 		/// コントローラー-----------------------------------------------------------------------
-		InputControl::AllUpdate();
-		/// -------------------------------------------------------------------------------------
 		if (KeyData::Get(KEY_INPUT_W) > 0 || PadData::GetStickCheck(PadData::PadStick::LEFT_STICK_Y, 0, false) > 0)
 		{
 			y--;
