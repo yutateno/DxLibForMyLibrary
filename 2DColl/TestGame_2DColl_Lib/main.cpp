@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Coll2D_Lib.h"
+#include "Coll2D_Lib.hpp"
 #include "DxLib.h"
 #include <string>
 
