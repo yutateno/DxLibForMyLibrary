@@ -1,0 +1,40 @@
+<p>
+    使う準備<br>
+    　四角形なら四辺の情報を保持するColl2D_Lib::SBoxを作成しなければならない。<br>
+    　円なら座標と半径の情報を保持するColl2D_Lib::SCircleを作成しなければならない。<br>
+</p>
+<p>
+    宣言：　　<font color="#2e8b57">bool Coll2D_Lib::CheckColl(const SBox& t_boxA, const SBox& t_boxB);</font><br>
+    <br>
+    概要：　　四角形同士の当たり判定をする<br>
+    <br>
+    引数：　　t_boxA：四角形の情報<br>
+    　　　　　t_boxB：四角形の情報<br>
+    戻り値：　false：当たっていない<br>
+    　　　　　true：当たっている<br>
+    <br>
+    解説：　　　四角形同士の当たり判定を調べる。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">bool Coll2D_Lib::CheckColl(const SCircle& t_circleA, const SCircle& t_circleB);</font><br>
+    <br>
+    概要：　　ブラー処理にて使っていたものを解放する<br>
+    <br>
+    引数：　　t_circleA：円の情報<br>
+    　　　　　t_circleB：円の情報<br>
+    戻り値：　false：当たっていない<br>
+    　　　　　true：当たっている<br>
+    <br>
+    解説：　　　円同士の当たり判定を調べる。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">bool Coll2D_Lib::CheckColl(const SBox& t_box, const SCircle& t_circle);</font><br>
+    <br>
+    概要：　　ブラーのための準備をする<br>
+    <br>
+    引数：　　t_box：四角形の情報<br>
+    　　　　　t_circle：円の情報<br>
+    戻り値：　false：当たっていない<br>
+    　　　　　true：当たっている<br>
+    <br>
+    解説：　　　四角形と円のあたり判定を調べる。<br>
+	<br><br><br><br><br>
+</p>
