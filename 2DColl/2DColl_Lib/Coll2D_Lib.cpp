@@ -4,7 +4,7 @@
 
 
 /// -----------------------------------------------------------------------------------
-bool Coll2D_Lib::CheckColl(const SBox& t_boxA, const SBox& t_boxB)
+bool Coll2D_Lib::CheckColl(const SBox t_boxA, const SBox t_boxB)
 {
 	if ((t_boxA.right > t_boxB.left) &&	(t_boxA.left < t_boxB.right))
 	{
@@ -20,7 +20,7 @@ bool Coll2D_Lib::CheckColl(const SBox& t_boxA, const SBox& t_boxB)
 
 
 /// -----------------------------------------------------------------------------------
-bool Coll2D_Lib::CheckColl(const SCircle& t_circleA, const SCircle& t_circleB)
+bool Coll2D_Lib::CheckColl(const SCircle t_circleA, const SCircle t_circleB)
 {
 	float dx = t_circleA.x - t_circleB.x;
 	float dy = t_circleA.y - t_circleB.y;
@@ -40,7 +40,7 @@ bool Coll2D_Lib::CheckColl(const SCircle& t_circleA, const SCircle& t_circleB)
 
 
 /// -----------------------------------------------------------------------------------
-bool Coll2D_Lib::CheckColl(const SBox& t_box, const SCircle& t_circle)
+bool Coll2D_Lib::CheckColl(const SBox t_box, const SCircle t_circle)
 {
 	bool nResult = false;
 
