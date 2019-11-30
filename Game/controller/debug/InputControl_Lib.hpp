@@ -38,10 +38,10 @@ namespace InputControl
 		static void UpDate();
 
 		//マウスのクリックの状態を返す
-		static const int& GetClick(const CLICK& t_CLICK);
+		static const int GetClick(const CLICK t_CLICK);
 
 		// 現在のマウスの位置
-		static const MouseXY& GetMouseArea();
+		static const MouseXY GetMouseArea();
 
 		// 直前からどれくらい移動したか
 		static const MouseXY GetMouseMoveValue();
@@ -62,7 +62,7 @@ namespace InputControl
 		static void UpDate();
 
 		//マウスホイールの状態を返す
-		static const int& GetMouseWheel();
+		static const int GetMouseWheel();
 	};
 
 
@@ -79,7 +79,7 @@ namespace InputControl
 		static void UpDate();			// キー入力の状態更新
 
 
-		static const int& Get(const int& t_keyCode);		// キー入力状態取得
+		static const int Get(const int t_keyCode);		// キー入力状態取得
 		static const bool IsCheckEnd();					// 強制終了
 	};
 
@@ -139,18 +139,18 @@ namespace InputControl
 		static void UpDate();		// ゲームパッドの入力の状態更新
 
 
-		static const int& GetButton(const int& t_code, const int& t_padNum);									// ボタンの入力状態取得
-		static const int& GetTrigger(const int& t_code, const int& t_padNum);								// トリガーの取得
-		static const int& GetStick(const int& t_code, const int& t_padNum);									// スティックの入力状態取得
-		static const int& GetStickCheck(const int& t_code, const int& t_padNum, const bool& t_leftAndDownIsTrue);	// スティックの押し倒し取得
+		static const int GetButton(const int t_code, const int t_padNum);									// ボタンの入力状態取得
+		static const int GetTrigger(const int t_code, const int t_padNum);								// トリガーの取得
+		static const int GetStick(const int t_code, const int t_padNum);									// スティックの入力状態取得
+		static const int GetStickCheck(const int t_code, const int t_padNum, const bool t_leftAndDownIsTrue);	// スティックの押し倒し取得
 
 
 		static const bool IsCheckEnd();																		// 強制終了
-		static const char& GetPadNum();																		// 接続されてるゲームパッドの数
+		static const char GetPadNum();																		// 接続されてるゲームパッドの数
 
 
-		static void SetDedZone(const short& t_stickLX_MAX, const short& t_stickLX_MIN, const short& t_stickLY_MAX, const short& t_stickLY_MIN
-			, const short& t_stickRX_MAX, const short& t_stickRX_MIN, const short& t_stickRY_MAX, const short& t_stickRY_MIN);					// デッドゾーンの設定
+		static void SetDedZone(const short t_stickLX_MAX, const short t_stickLX_MIN, const short t_stickLY_MAX, const short t_stickLY_MIN
+			, const short t_stickRX_MAX, const short t_stickRX_MIN, const short t_stickRY_MAX, const short t_stickRY_MIN);					// デッドゾーンの設定
 		static void SetPadNum();																		// 接続されてるゲームパッドを取得する
 	};
 	
