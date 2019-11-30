@@ -65,7 +65,7 @@ namespace FileReadWrite_Lib
 
 
 	/// ----------------------------------------------------------------------------------------------
-	std::vector<std::vector<std::string>> FileReaderWrite::GetMapData()
+	const std::vector<std::vector<std::string>>& FileReaderWrite::GetMapData()
 	{
 		return m_mapdata;
 	}
@@ -73,7 +73,7 @@ namespace FileReadWrite_Lib
 
 
 	/// ----------------------------------------------------------------------------------------------
-	bool FileReaderWrite::FileCSVWrite(const std::string t_file, const std::vector<std::vector<std::string>> t_data)
+	bool FileReaderWrite::FileCSVWrite(const std::string t_file, const std::vector<std::vector<std::string>>& t_data)
 	{
 		// ÉtÉ@ÉCÉãÇì«Ç›çûÇﬁ
 		std::ofstream saveFile(t_file);
