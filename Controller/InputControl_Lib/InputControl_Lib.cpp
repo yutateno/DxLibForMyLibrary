@@ -49,7 +49,7 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	const int& MouseData::GetClick(const CLICK& t_CLICK)
+	const int MouseData::GetClick(const CLICK t_CLICK)
 	{
 		return m_mouse[static_cast<int>(t_CLICK)];
 	}
@@ -57,7 +57,7 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	const MouseData::MouseXY& MouseData::GetMouseArea()
+	const MouseData::MouseXY MouseData::GetMouseArea()
 	{
 		return m_mouseArea;
 	}
@@ -109,7 +109,7 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	const int& MouseWheelData::GetMouseWheel()
+	const int MouseWheelData::GetMouseWheel()
 	{
 		return m_mouseWheel;
 	}
@@ -156,7 +156,7 @@ namespace InputControl
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	const int& KeyData::Get(const int& t_keyCode)
+	const int KeyData::Get(const int t_keyCode)
 	{
 		return m_key[t_keyCode];
 	}
@@ -438,7 +438,7 @@ namespace InputControl
 
 
 	/// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-	const int& PadData::GetButton(const int& t_code, const int& t_padNum)
+	const int PadData::GetButton(const int t_code, const int t_padNum)
 	{
 		return m_button[t_padNum][t_code];
 	}
@@ -446,7 +446,7 @@ namespace InputControl
 
 
 	/// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-	const int& PadData::GetTrigger(const int& t_code, const int& t_padNum)
+	const int PadData::GetTrigger(const int t_code, const int t_padNum)
 	{
 		return m_trigger[t_padNum][t_code];
 	}
@@ -454,7 +454,7 @@ namespace InputControl
 
 
 	/// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-	const int& PadData::GetStick(const int& t_code, const int& t_padNum)
+	const int PadData::GetStick(const int t_code, const int t_padNum)
 	{
 		return m_stick[t_padNum][t_code];
 	}
@@ -462,7 +462,7 @@ namespace InputControl
 
 
 	/// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-	const int& PadData::GetStickCheck(const int& t_code, const int& t_padNum, const bool& t_leftAndDownIsTrue)
+	const int PadData::GetStickCheck(const int t_code, const int t_padNum, const bool t_leftAndDownIsTrue)
 	{
 		if (t_leftAndDownIsTrue)
 		{
@@ -491,7 +491,7 @@ namespace InputControl
 
 
 	/// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-	const char& PadData::GetPadNum()
+	const char PadData::GetPadNum()
 	{
 		return m_padNum;
 	}
@@ -499,8 +499,8 @@ namespace InputControl
 
 
 	/// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-	void PadData::SetDedZone(const short& t_stickLX_MAX, const short& t_stickLX_MIN, const short& t_stickLY_MAX, const short& t_stickLY_MIN
-		, const short& t_stickRX_MAX, const short& t_stickRX_MIN, const short& t_stickRY_MAX, const short& t_stickRY_MIN)
+	void PadData::SetDedZone(const short t_stickLX_MAX, const short t_stickLX_MIN, const short t_stickLY_MAX, const short t_stickLY_MIN
+		, const short t_stickRX_MAX, const short t_stickRX_MIN, const short t_stickRY_MAX, const short t_stickRY_MIN)
 	{
 		stickLX_DeadZoneMAX = t_stickLX_MAX;
 		stickLX_DeadZoneMIN = t_stickLX_MIN;
