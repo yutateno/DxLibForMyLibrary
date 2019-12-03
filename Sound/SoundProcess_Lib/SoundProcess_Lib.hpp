@@ -1,5 +1,18 @@
 #pragma once
-class SoundProcess_Lib
+#include "DxLib.h"
+#include <vector>
+#include <string>
+
+
+namespace SoundProcess_Lib
 {
-};
+	class SoundProcess
+	{
+	private:
+
+
+	public:
+
+	};
+}
 
