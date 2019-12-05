@@ -9,6 +9,8 @@ std::vector<std::string> SoundProcess::m_BGMdata;
 std::vector<long> SoundProcess::m_BGMtotalTime;
 std::vector<long> SoundProcess::m_BGMsampleTime;
 
+float SoundProcess::m_SEVolume;
+
 
 
 /// -------------------------------------------------------------------------------
@@ -18,6 +20,8 @@ void SoundProcess::Init()
 	std::vector<std::string>().swap(m_BGMdata);
 	std::vector<long>().swap(m_BGMtotalTime);
 	std::vector<long>().swap(m_BGMsampleTime);
+
+	m_SEVolume = 1.0f;
 }
 
 
@@ -62,9 +66,26 @@ bool SoundProcess::LoadBGM(int& t_bgmData, std::string t_bgmName, const std::str
 
 
 /// -------------------------------------------------------------------------------
+void SoundProcess::SetSEVolume(const float t_volume)
+{
+	m_SEVolume = t_volume;
+}
+
+
+
+/// -------------------------------------------------------------------------------
+const float SoundProcess::GetSEVolume()
+{
+	return m_SEVolume;
+}
+
+
+
+/// -------------------------------------------------------------------------------
 void SoundProcess::PlaySE(const int t_seData)
 {
 	PlaySoundMem(t_seData, DX_PLAYTYPE_BACK);
+	ChangeVolumeSoundMem(static_cast<int>(255.0f * m_SEVolume), t_seData);
 }
 
 

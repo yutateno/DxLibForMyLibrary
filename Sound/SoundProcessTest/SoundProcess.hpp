@@ -15,6 +15,7 @@ class SoundProcess
 {
 private:
 	static std::vector<std::string> m_SEdata;
+	static float m_SEVolume;
 
 	static std::vector<std::string> m_BGMdata;
 	static std::vector<long> m_BGMtotalTime;
@@ -29,6 +30,10 @@ public:
 	static bool LoadSE(int& t_seData, const std::string t_seName, const std::string t_intVarName);
 
 	static bool LoadBGM(int& t_bgmData, std::string t_bgmName, const std::string t_intVarName);
+
+	static void SetSEVolume(const float t_volume);
+
+	static const float GetSEVolume();
 
 	static void PlaySE(const int t_seData);
 
