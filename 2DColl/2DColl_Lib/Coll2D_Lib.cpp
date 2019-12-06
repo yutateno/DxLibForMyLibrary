@@ -129,3 +129,19 @@ bool Coll2D_Lib::CheckColl(const SBox t_box, const SCircle t_circle)
 
 	return nResult;
 }
+
+
+
+/// -----------------------------------------------------------------------------------
+void Coll2D_Lib::DebugDraw(const SBox t_box, const unsigned int t_GetColor)
+{
+	DrawBox(t_box.left, t_box.top, t_box.right, t_box.bottom, t_GetColor, false);
+}
+
+
+
+/// -----------------------------------------------------------------------------------
+void Coll2D_Lib::DebugDraw(const SCircle t_circle, const unsigned int t_GetColor)
+{
+	DrawCircle(t_circle.x, t_circle.y, t_circle.r, t_GetColor, false);
+}
