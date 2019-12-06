@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef _SCREENBLUR_LIB_HPP
+#define _SCREENBLUR_LIB_HPP
+
 #include "DxLib.h"
 
 
@@ -21,7 +24,8 @@ namespace ScreenBlur_Lib
 		~ScreenBlur() {}
 
 
-		void Init(const int t_winWidth, const int t_winHeight, const int t_alpha, const int t_offsetX1, const int t_offsetY1, const int t_offsetX2, const int t_offsetY2);
+		void Init(const int t_winWidth, const int t_winHeight, const int t_alpha
+			, const int t_offsetX1, const int t_offsetY1, const int t_offsetX2, const int t_offsetY2);
 		void ReplayInit();
 		void Release();
 
@@ -30,3 +34,5 @@ namespace ScreenBlur_Lib
 		void PostRenderBlurScreen();
 	};
 }
+
+#endif

@@ -23,7 +23,8 @@ namespace ScreenBlur_Lib
 
 
 	/// ------------------------------------------------------------------------------------------------------------
-	void ScreenBlur::Init(const int t_winWidth, const int t_winHeight, const int t_alpha, const int t_offsetX1, const int t_offsetY1, const int t_offsetX2, const int t_offsetY2)
+	void ScreenBlur::Init(const int t_winWidth, const int t_winHeight, const int t_alpha
+		, const int t_offsetX1, const int t_offsetY1, const int t_offsetX2, const int t_offsetY2)
 	{
 		m_screenWidth = t_winWidth;
 		m_screenHeight = t_winHeight;
