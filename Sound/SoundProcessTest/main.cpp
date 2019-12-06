@@ -53,7 +53,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SoundProcess::Init();
 
 	int bgm;
-	if (!SoundProcess::LoadBGM(bgm, "sound\\めいん.wav", "bgm")) return -1;
+	if (!SoundProcess::LoadSE("sound\\ジャンプ.wav")) return -1;
 
 	// メインループ
 	while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen() && !CheckHitKey(KEY_INPUT_ESCAPE))
