@@ -1,0 +1,46 @@
+<p>
+    決まり<br>
+    　LoadThread_Lib::LoadThreadを生成しなければならない、また使い終わったら削除しなければならない。やらないと…いいのか？メモリリークするぞ？？<br>
+</p>
+<p>
+    宣言：　　<font color="#2e8b57">void ScreenBlur_Lib::Process(const int max, const std::vector<　std::string> path, const std::vector<　ELOADFILE> type);</font><br>
+    <br>
+    概要：　　非同期処理を行うプロセス、また描画も担っている<br>
+    <br>
+    引数：　　max：読み込みをするファイルの総数<br>
+    　　　　　path：読み込みをするファイル名<br>
+    　　　　　type：読み込みをするファイルの種類<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　非同期処理を行う。そのさい描画もこの関数が担っている。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const std::vector<　int> ScreenBlur_Lib::GetFile() const;</font><br>
+    <br>
+    概要：　　ロードしたファイルの値を渡す<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　ロードしたファイルの値を返す<br>
+    <br>
+    解説：　　　非同期で読み込んだファイルの値を渡す。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">const bool ScreenBlur_Lib::GetEnd() const;</font><br>
+    <br>
+    概要：　　ロードが終えたかどうかを渡す<br>
+    <br>
+    引数：　　なし<br>
+    戻り値：　true：ロード終了<br>
+    　　　　　false：ロード中<br>
+    <br>
+    解説：　　　ロードが終えたかどうかを渡す。ロード中を把握できるように思えるが、出来ない。<br>
+	<br><br><br><br><br>
+    宣言：　　<font color="#2e8b57">void SetLoadFunc(std::function<　void(const int, const int)> t_loadFunc);</font><br>
+    <br>
+    概要：　　ロードの画面用の関数を受け取る<br>
+    <br>
+    引数：　　t_loadFunc：ロード画面の関数ポインタ<br>
+    戻り値：　なし<br>
+    <br>
+    解説：　　　ロード中の画面の関数を渡す。<br>
+    　　　　　　ただし、クラスメンバ関数は渡せない。渡すならただの関数またはスタティック関数でなければならない。<br>
+	<br><br><br><br><br>
+</p>
