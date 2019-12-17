@@ -4,80 +4,64 @@
 
 namespace LoadThread_Lib
 {
-	using namespace std;
-	mutex mtx;
-
-
 	/// ---------------------------------------------------------------------------------------
-	void LoadThread::MyNextLoad(const std::string path, int& file, const ELOADFILE type)
+	LoadThread::LoadThread(const int max, const std::vector<std::string> path, const std::vector<ELOADFILE> type, std::function<void(const int, const int, const int)> t_loadFunc)
 	{
-		lock_guard<mutex> lock(mtx);
-
-		MyLoad(path, file, type);
-
-		ClearDrawScreen();
-		m_function(num++, maxNum);
-		ScreenFlip();
-	}
-
-
-
-	/// ---------------------------------------------------------------------------------------
-	void LoadThread::MyLoad(const string path, int& file, const ELOADFILE type)
-	{
-		// ロードする
-		switch (type)
-		{
-			// UI関係の画像のとき
-		case ELOADFILE::graph:
-			file = LoadGraph(path.c_str());
-			break;
-
-
-			// 2D系SEのとき
-		case ELOADFILE::soundEffect:
-			file = LoadSoundMem(path.c_str());
-			break;
-
-
-			// モデルデータのとき
-		case ELOADFILE::model:
-			file = MV1LoadModel(path.c_str());
-			break;
-
-
-			// BGMのとき
-		case ELOADFILE::backGroundMusic:
-			SetCreateSoundDataType(DX_SOUNDDATATYPE_FILE);
-			file = LoadSoundMem(path.c_str());
-			SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);
-			break;
-
-
-			// 3Dサウンドのとき
-		case ELOADFILE::sound3DEffect:
-			SetCreate3DSoundFlag(TRUE);
-			file = LoadSoundMem(path.c_str());
-			SetCreate3DSoundFlag(FALSE);
-			break;
-
-
-		default:
-			break;
-		}
-	}
-
-
-
-	/// ---------------------------------------------------------------------------------------
-	LoadThread::LoadThread()
-	{
-		num = 0;
-		maxNum = 0;
-		end = false;
-
 		std::vector<int>().swap(loadData);
 		std::vector<ELOADFILE>().swap(loadType);
+
+		num = 0;
+		end = false;
+		time = 0;
+
+		m_function = t_loadFunc;
+
+		loadData.resize(max);
+
+		loadType = type;
+
+		SetUseASyncLoadFlag(TRUE);
+		for (int i = 0; i < max; ++i)
+		{
+			switch (type.at(i))
+			{
+				// UI関係の画像のとき
+			case ELOADFILE::graph:
+				loadData.at(i) = LoadGraph(path.at(i).c_str());
+				break;
+
+
+				// 2D系SEのとき
+			case ELOADFILE::soundEffect:
+				loadData.at(i) = LoadSoundMem(path.at(i).c_str());
+				break;
+
+
+				// モデルデータのとき
+			case ELOADFILE::model:
+				loadData.at(i) = MV1LoadModel(path.at(i).c_str());
+				break;
+
+
+				// BGMのとき
+			case ELOADFILE::backGroundMusic:
+				SetCreateSoundDataType(DX_SOUNDDATATYPE_FILE);
+				loadData.at(i) = LoadSoundMem(path.at(i).c_str());
+				SetCreateSoundDataType(DX_SOUNDDATATYPE_MEMNOPRESS);
+				break;
+
+
+				// 3Dサウンドのとき
+			case ELOADFILE::sound3DEffect:
+				SetCreate3DSoundFlag(TRUE);
+				loadData.at(i) = LoadSoundMem(path.at(i).c_str());
+				SetCreate3DSoundFlag(FALSE);
+				break;
+			}
+		}
+		SetUseASyncLoadFlag(FALSE);
+
+		maxNum = GetASyncLoadNum();
 	}
 
 
@@ -130,29 +114,29 @@ namespace LoadThread_Lib
 
 
 	/// ---------------------------------------------------------------------------------------
-	void LoadThread::Process(const int max, const std::vector<std::string> path, const std::vector<ELOADFILE> type)
+	void LoadThread::Process()
 	{
-		if (end) return;
+		m_function(time++, maxNum, maxNum - GetASyncLoadNum());
 
-		maxNum = max;
-		loadData.resize(max);
-
-		for (int i = 0; i < max; ++i)
+		if (GetASyncLoadNum() == 0)
 		{
-			ths.push_back(thread(&LoadThread::MyNextLoad, this, path.at(i), ref(loadData.at(i)), type.at(i)));
-			ths.at(i).join();
+			end = true;
 		}
-
-		loadType = type;
-
-		end = true;
 	}
 
 
 
 	/// ---------------------------------------------------------------------------------------
-	void LoadThread::SetLoadFunc(std::function<void(const int, const int)> t_loadFunc)
+	const std::vector<int> LoadThread::GetFile() const
 	{
-		m_function = t_loadFunc;
+		return loadData;
+	}
+
+
+
+	/// ---------------------------------------------------------------------------------------
+	const bool LoadThread::GetEnd() const
+	{
+		return end;
 	}
 }
